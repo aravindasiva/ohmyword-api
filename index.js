@@ -4,14 +4,14 @@ const mongoose = require('mongoose')
 const typeDefs = require('./graphql/typeDefs')
 const resolvers = require('./graphql/resolvers')
 
-const MONGODB = "mongodb+srv://ohmyword:OhMyWord@ohmyword.t1jll.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+require('dotenv').config()
 
 const server = new ApolloServer({
   typeDefs,
   resolvers
 })
 
-mongoose.connect(MONGODB, { useNewUrlParser: true })
+mongoose.connect(process.env.MONGODB, { useNewUrlParser: true })
   .then(() => {
     console.log("Mongo Db is connected")
     return server.listen({ port: 5000 })
