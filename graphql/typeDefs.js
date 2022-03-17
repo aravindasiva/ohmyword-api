@@ -32,7 +32,8 @@ input LoginUserInput {
 
 type Query {
   message(id: ID!) : Message
-  user(id: ID!): User
+  user(id: ID!):User
+  getUsers: [User]
 }
 
 type Mutation {

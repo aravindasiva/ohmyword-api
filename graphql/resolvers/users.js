@@ -2,6 +2,7 @@ const { ApolloError } = require('apollo-server')
 const User = require('../../models/User')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+const { ObjectId } = require('mongodb')
 
 module.exports = {
   Mutation: {
@@ -74,6 +75,16 @@ module.exports = {
 
   },
   Query: {
-    user: (_, { ID }) => User.findById(ID)
+    async user(_, id) {
+      return await User.findById(new ObjectId(id))
+    },
+    async getUsers() {
+      try {
+        const users = await User.find().sort({ createdAt: -1 });
+        return users;
+      } catch (err) {
+        throw new Error(err);
+      }
+    }
   }
 }
