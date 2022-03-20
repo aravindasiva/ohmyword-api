@@ -1,7 +1,6 @@
 const { gql } = require('apollo-server')
 
 module.exports = gql`
-# Types
 
 type User{
   username: String
@@ -11,9 +10,9 @@ type User{
 }
 
 type Twister{
-  twister:  String,
-  level: Number,
-  createdAt: String,
+  twister:  String
+  level: Int
+  createdAt: String
   createdBy: String
 }
 
@@ -22,8 +21,6 @@ type Message {
   createdAt:String
   createdBy: String
 }
-
-# Input Types
 
 input RegisterUserInput {
   username: String
@@ -38,7 +35,7 @@ input LoginUserInput {
 
 input TwisterInput {
   twister: String
-  level: Number
+  level: Int
   createdBy: String
 }
 
@@ -47,7 +44,6 @@ input MessageInput {
   username: String
 }
 
-# Queries
 
 type Query {
   message(id: ID!) : Message
@@ -56,12 +52,10 @@ type Query {
   getTwisters: [Twister]
 }
 
-#Mutations
-
 type Mutation {
   createMessage(messageInput: MessageInput): Message!
+  createTwister(twisterInput: TwisterInput): Twister!
   registerUser(registerUserInput: RegisterUserInput ): User
   loginUser(loginUserInput: LoginUserInput): User
-  createTwister(twisterInput: TwisterInput): Twister!
 }
 `

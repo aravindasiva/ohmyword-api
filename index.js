@@ -17,5 +17,6 @@ mongoose.connect(process.env.MONGODB, { useNewUrlParser: true })
     return server.listen({ port: 5000 })
   })
   .then((res) => {
+    console.log("🚀 ~ file: index.js ~ line 20 ~ .then ~ res", res)
     console.log(`Server is running at ${res.url}`)
   })

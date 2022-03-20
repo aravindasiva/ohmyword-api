@@ -2,12 +2,12 @@ const Twister = require('../../models/Twister')
 
 module.exports = {
   Mutation: {
-    async createTwister(_, { twisterInput: { twister, level, username } }) {
+    async createTwister(_, { twisterInput: { twister, level, createdBy } }) {
 
       const newTwister = new Twister({
         twister: twister,
         level: level,
-        createdBy: username,
+        createdBy: createdBy,
         createdAt: new Date().toISOString()
       })
 
@@ -27,6 +27,5 @@ module.exports = {
       } catch (err) {
         throw new Error(err);
       }
-    }
-  }
+    }  }
 }
